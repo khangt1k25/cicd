@@ -1,3 +1,3 @@
 
 name = "Khang"
-print("Hello {}".format(name))
+print("Hello from {}".format(name))

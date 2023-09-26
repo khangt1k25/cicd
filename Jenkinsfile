@@ -26,8 +26,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo "Deploying.."
-                // Deploy your application here (e.g., push to a container registry)
+                echo 'Deploying'
+                sh '''
+                docker build -t my-python-app .
+                docker run -d -p 8089:80 my-python-app
+                '''
             }
         }
     }

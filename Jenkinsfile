@@ -7,7 +7,9 @@ pipeline {
     }
     stages {
         stage('Build') {
+            
             steps {
+                echo "Building.."
                 sh '''
                 cd app
                 pip install -r requirements.txt
@@ -16,6 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                echo "Testing.."
                 sh '''
                 cd app
                 python test.py
@@ -24,6 +27,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                echo "Deploying.."
                 // Deploy your application here (e.g., push to a container registry)
             }
         }

@@ -1,16 +1,13 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-python'
-            }
-      }
-    triggers {
-        pollSCM '*/5 * * * *'
+    agent {
+        docker {
+            image 'python:3.8'  // Use the Docker image you specified in your Dockerfile
+            args '-u root'      // Run as root to avoid permission issues
+        }
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
                 sh '''
                 cd app
                 pip install -r requirements.txt
@@ -19,20 +16,15 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "Testing.."
                 sh '''
                 cd app
-                python3 hello.py
-                python3 hello.py --name=Khang
+                python test.py
                 '''
             }
         }
-        stage('Deliver') {
+        stage('Deploy') {
             steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                // Deploy your application here (e.g., push to a container registry)
             }
         }
     }

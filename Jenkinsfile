@@ -20,7 +20,7 @@ pipeline {
                 echo "Testing.."
                 sh '''
                 cd app
-                python test.py
+                python3 test.py
                 '''
             }
         }

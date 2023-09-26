@@ -1,8 +1,7 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3.8'  // Use the Docker image you specified in your Dockerfile
-            args '-u root'      // Run as root to avoid permission issues
+        node {
+            label 'docker-agent-python'
         }
     }
     stages {
